@@ -120,8 +120,6 @@ public:
     void getDump(char *buf, size_t len);
     /* Reset usage and allocation bits on all pipes for given display */
     void clear(int dpy);
-    /* Validate the set of pipes for a display and set them in driver */
-    bool validateAndSet(const int& dpy, const int& fbFd);
 
     /* Closes open pipes, called during startup */
     static int initOverlay();
@@ -133,6 +131,8 @@ public:
     static int getFbForDpy(const int& dpy);
     static bool displayCommit(const int& fd, const utils::Dim& roi);
     static bool displayCommit(const int& fd);
+    /* Returns the scalar object */
+    static scale::Scale *getScalar();
 
 private:
     /* Ctor setup */
@@ -141,8 +141,6 @@ private:
     void validate(int index);
     static void setDMAMultiplexingSupported();
     void dump() const;
-    /* Returns the scalar object */
-    static scale::Scale *getScalar();
     /* Creates a scalar object using libscale.so */
     static void initScalar();
     /* Destroys the scalar object using libscale.so */
@@ -214,8 +212,6 @@ private:
     static bool sDMAMultiplexingSupported;
     static void *sLibScaleHandle;
     static scale::Scale *sScale;
-
-    friend class MdpCtrl;
 };
 
 inline void Overlay::validate(int index) {

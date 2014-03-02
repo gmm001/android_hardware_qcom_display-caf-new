@@ -39,9 +39,7 @@ public:
     virtual ~IFBUpdate() {};
     // Sets up members and prepares overlay if conditions are met
     virtual bool prepare(hwc_context_t *ctx, hwc_display_contents_1 *list,
-            int fbZorder) = 0;
-    virtual bool prepareAndValidate(hwc_context_t *ctx,
-            hwc_display_contents_1 *list, int fbZorder);
+                                                       int fbZorder) = 0;
     // Draws layer
     virtual bool draw(hwc_context_t *ctx, private_handle_t *hnd) = 0;
     //Reset values
